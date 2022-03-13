@@ -27,7 +27,7 @@ class GoldCupAwardDocument extends PrintableAwardDocument {
   }
 
   protected function DrawUnderlay($x, $y, $w, $h) {
-    $this->pdf->SetAlpha(0.75);
+    $this->pdf->SetAlpha(0.9);
     $this->pdf->SetFillColor(255, 255, 255);
     $this->pdf->RoundedRect($x, $y, $w, $h, 0.125, 'F');
     $this->pdf->SetAlpha(1);
@@ -58,7 +58,7 @@ class GoldCupAwardDocument extends PrintableAwardDocument {
     $this->pdf->Image(dirname(__FILE__).'/gold-cup-certificate.png',
                       $left, $top, $params['width']);
 
-    $this->pdf->SetFont('BlackChancery', '', 30);
+    $this->pdf->SetFont('BlackChancery', '', 50);
 
     // Award name
     $award_name_width = $this->pdf->GetStringWidth($award['awardname']);
@@ -81,7 +81,7 @@ class GoldCupAwardDocument extends PrintableAwardDocument {
       $this->pdf->Line($cx - $recip_width / 2, $cy, $cx + $recip_width / 2, $cy);
     }
 
-    $this->pdf->SetFont('Times', '', 15);
+    $this->pdf->SetFont('BlackChancery', '', 30);
     $this->pdf->SetLineWidth(0.01);
     $this->pdf->SetDrawColor(0);
 
@@ -92,14 +92,14 @@ class GoldCupAwardDocument extends PrintableAwardDocument {
     if ($this->get_option('signatory1')) {
       $this->pdf->CenteredSequence($left + $sig_margin + $sig_width / 2,
                                    $top + 6.0, array($this->get_option('signatory1')));
-      $this->pdf->Line($left + $sig_margin, $top + 6.5,
-                       $left + $sig_margin + $sig_width, $top + 6.5);
+      $this->pdf->Line($left + $sig_margin, $top + 6.1,
+                       $left + $sig_margin + $sig_width, $top + 6.1);
     }
     if ($this->get_option('signatory2')) {
       $this->pdf->CenteredSequence($left + $params['width'] - $sig_margin - $sig_width/2, $top + 6.0,
                                    array($this->get_option('signatory2')));
-      $this->pdf->Line($left + $params['width'] - $sig_margin - $sig_width, $top + 6.5,
-                       $left + $params['width'] - $sig_margin,              $top + 6.5);
+      $this->pdf->Line($left + $params['width'] - $sig_margin - $sig_width, $top + 6.1,
+                       $left + $params['width'] - $sig_margin,              $top + 6.1);
     }
 
     if ($this->get_option('logo')) {
